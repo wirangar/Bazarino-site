@@ -19,37 +19,42 @@ document.addEventListener('DOMContentLoaded', function() {
         slidesPerView: 3,
         spaceBetween: 30
       }
+    },
+    on: {
+      init: function() {
+        document.querySelector('.products-slider').classList.add('visible');
+      }
     }
   });
   
   // انیمیشن اسکرول
   const animateOnScroll = () => {
     const elements = document.querySelectorAll('.feature-card, .products-slider, .poem-box, .signature');
+    const windowHeight = window.innerHeight;
     
     elements.forEach(el => {
       const elementPosition = el.getBoundingClientRect().top;
-      const screenPosition = window.innerHeight / 1.2;
+      const elementHeight = el.offsetHeight;
       
-      if (elementPosition < screenPosition) {
-        el.style.opacity = '1';
-        el.style.transform = 'translateY(0)';
+      if (elementPosition < windowHeight - elementHeight/3) {
+        el.classList.add('visible');
       }
     });
   };
-  
-  // مقداردهی اولیه برای انیمیشن‌ها
-  document.querySelectorAll('.feature-card, .products-slider, .poem-box, .signature').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  });
   
   // رویداد اسکرول
   window.addEventListener('scroll', animateOnScroll);
   animateOnScroll(); // اجرای اولیه
   
   // سیستم سبد خرید ساده
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  let cartItems = [];
+  
+  try {
+    cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  } catch (e) {
+    console.error('Error accessing localStorage:', e);
+    cartItems = [];
+  }
   
   document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', function() {
@@ -62,24 +67,56 @@ document.addEventListener('DOMContentLoaded', function() {
         price: productPrice
       });
       
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      try {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      } catch (e) {
+        console.error('Error saving to localStorage:', e);
+      }
       
       // نمایش اعلان
-      const notification = document.createElement('div');
-      notification.className = 'notification';
-      notification.textContent = `${productName} به سبد خرید اضافه شد`;
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        notification.classList.add('show');
-      }, 10);
-      
-      setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-          notification.remove();
-        }, 300);
-      }, 3000);
+      showNotification(`${productName} به سبد خرید اضافه شد`);
     });
   });
+  
+  // تابع نمایش اعلان
+  function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.classList.add('show');
+    }, 10);
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+      setTimeout(() => {
+        notification.remove();
+      }, 300);
+    }, 3000);
+  }
+  
+  // بارگذاری تنبل تصاویر
+  if ('loading' in HTMLImageElement.prototype) {
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    lazyImages.forEach(img => {
+      img.src = img.dataset.src;
+    });
+  } else {
+    // Fallback برای مرورگرهایی که از loading="lazy" پشتیبانی نمی‌کنند
+    const lazyLoadObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          lazyLoadObserver.unobserve(img);
+        }
+      });
+    });
+    
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      lazyLoadObserver.observe(img);
+    });
+  }
 });
