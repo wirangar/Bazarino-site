@@ -20,67 +20,34 @@ document.addEventListener('DOMContentLoaded', () => {
         spaceBetween: 30,
       },
     },
-    on: {
-      init: function () {
-        document.querySelector('.products-slider').classList.add('visible');
-      },
-    },
   });
 
   // انیمیشن اسکرول
   const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.feature-card, .products-slider, .poem-box, .signature, .newsletter');
-    const windowHeight = window.innerHeight;
+    const elements = document.querySelectorAll('.feature-card, .products-slider, .poem-box, .signature');
+    const windowHeight = window.innerHeight / 1.2;
 
     elements.forEach((el) => {
       const elementPosition = el.getBoundingClientRect().top;
-      const elementHeight = el.offsetHeight;
-
-      if (elementPosition < windowHeight - elementHeight / 3) {
-        el.classList.add('visible');
+      if (elementPosition < windowHeight) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
       }
     });
   };
 
+  // مقداردهی اولیه برای انیمیشن‌ها
+  document.querySelectorAll('.feature-card, .products-slider, .poem-box, .signature').forEach((el) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  });
+
   window.addEventListener('scroll', animateOnScroll);
   animateOnScroll(); // اجرای اولیه
 
-  // دکمه بازگشت به بالا
-  const scrollToTopButton = document.querySelector('.scroll-to-top');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      scrollToTopButton.classList.add('show');
-    } else {
-      scrollToTopButton.classList.remove('show');
-    }
-  });
-
-  scrollToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
   // سیستم سبد خرید
-  let cartItems = [];
-
-  const loadCart = () => {
-    try {
-      cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    } catch (e) {
-      console.error('Error accessing localStorage:', e);
-      showNotification('خطایی در بارگذاری سبد خرید رخ داد.');
-    }
-  };
-
-  const saveToCart = (item) => {
-    try {
-      cartItems.push(item);
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
-      showNotification(`${item.name} به سبد خرید اضافه شد`);
-    } catch (e) {
-      console.error('Error saving to localStorage:', e);
-      showNotification('خطایی در ذخیره‌سازی سبد خرید رخ داد.');
-    }
-  };
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
   document.querySelectorAll('.add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
@@ -88,85 +55,27 @@ document.addEventListener('DOMContentLoaded', () => {
       const productName = productCard.querySelector('h3').textContent;
       const productPrice = productCard.querySelector('.product-price').textContent;
 
-      saveToCart({
+      cartItems.push({
         name: productName,
         price: productPrice,
       });
+
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      // نمایش اعلان
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = `${productName} به سبد خرید اضافه شد`;
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 10);
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
     });
   });
-
-  loadCart();
-
-  // جستجوی محصولات
-  const searchForm = document.querySelector('.search-form');
-  searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const query = document.getElementById('search-input').value.trim().toLowerCase();
-    if (!query) {
-      showNotification('لطفاً عبارت جستجو را وارد کنید.');
-      return;
-    }
-
-    const products = document.querySelectorAll('.product-card');
-    products.forEach((product) => {
-      const name = product.querySelector('h3').textContent.toLowerCase();
-      product.style.display = name.includes(query) ? 'block' : 'none';
-    });
-  });
-
-  // فرم خبرنامه
-  const newsletterForm = document.querySelector('.newsletter-form');
-  newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = newsletterForm.querySelector('input[type="email"]').value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
-      showNotification('لطفاً یک ایمیل معتبر وارد کنید.');
-      return;
-    }
-
-    showNotification('با موفقیت در خبرنامه ثبت‌نام شدید!');
-    newsletterForm.reset();
-    // اینجا می‌توانید درخواست به سرور برای ذخیره ایمیل ارسال کنید
-  });
-
-  // تابع نمایش اعلان
-  const showNotification = (message) => {
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-      notification.classList.add('show');
-    }, 10);
-
-    setTimeout(() => {
-      notification.classList.remove('show');
-      setTimeout(() => notification.remove(), 300);
-    }, 3000);
-  };
-
-  // بارگذاری تنبل تصاویر
-  if ('loading' in HTMLImageElement.prototype) {
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    lazyImages.forEach((img) => {
-      img.src = img.dataset.src || img.src;
-    });
-  } else {
-    const lazyLoadObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src || img.src;
-          lazyLoadObserver.unobserve(img);
-        }
-      });
-    });
-
-    document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
-      lazyLoadObserver.observe(img);
-    });
-  }
 });
