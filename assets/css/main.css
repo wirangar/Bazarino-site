@@ -92,6 +92,17 @@ h1 {
   border-radius: 4px;
 }
 
+/* محتوای اصلی */
+.main-content {
+  padding: 2rem 0;
+}
+
+.intro-text {
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
 /* بخش ویژگی‌ها */
 .features {
   display: grid;
@@ -110,6 +121,14 @@ h1 {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.feature-card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .feature-card::before {
@@ -213,6 +232,14 @@ h1 {
 .products-slider {
   margin: 2rem 0;
   padding: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.products-slider.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .product-card {
@@ -271,6 +298,14 @@ h1 {
   font-style: italic;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.poem-box.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .poem-box::before {
@@ -302,6 +337,14 @@ h1 {
   padding: 1.5rem;
   border-radius: var(--border-radius);
   border-right: 4px solid var(--secondary-color);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.signature.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .signature img {
@@ -335,6 +378,7 @@ h1 {
   padding: 3rem 1rem;
   margin-top: 4rem;
   position: relative;
+  text-align: center;
 }
 
 .main-footer::before {
@@ -345,6 +389,13 @@ h1 {
   right: 0;
   height: 10px;
   background: linear-gradient(90deg, var(--secondary-color), var(--accent-color), var(--secondary-color));
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .social-links {
@@ -366,6 +417,9 @@ h1 {
 
 .footer-links {
   margin: 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .footer-links a {
@@ -415,6 +469,25 @@ h1 {
 .whatsapp-float:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+/* اعلان‌ها */
+.notification {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transform: translateX(150%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.notification.show {
+  transform: translateX(0);
 }
 
 /* انیمیشن‌ها */
@@ -480,45 +553,4 @@ h1 {
     bottom: 20px;
     left: 20px;
   }
-}
-
-/* اعلان‌ها */
-.notification {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: var(--primary-color);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  transform: translateX(150%);
-  transition: transform 0.3s ease;
-  z-index: 1000;
-}
-/* بهبود فوتر */
-.main-footer {
-  text-align: center;
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* بهبود فاصله‌ها */
-.main-content {
-  padding: 2rem 0;
-}
-
-.intro-text {
-  margin-top: 1rem; /* کاهش از 2.5rem */
-  text-align: center;
-  line-height: 1.8;
-}
-
-.notification.show {
-  transform: translateX(0);
 }
