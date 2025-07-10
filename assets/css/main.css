@@ -496,11 +496,27 @@ h1 {
   transition: transform 0.3s ease;
   z-index: 1000;
 }
+/* بهبود فوتر */
+.main-footer {
+  text-align: center;
+}
+
 .footer-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+/* بهبود فاصله‌ها */
+.main-content {
+  padding: 2rem 0;
+}
+
+.intro-text {
+  margin-top: 1rem; /* کاهش از 2.5rem */
   text-align: center;
+  line-height: 1.8;
 }
 
 .notification.show {
