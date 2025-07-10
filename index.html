@@ -5,24 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>بازارینو | فروشگاه ایرانی در ایتالیا</title>
   <meta name="description" content="سفارش آنلاین محصولات اصیل ایرانی در ایتالیا با بازارینو | ربات تلگرامی هوشمند">
-  <link rel="icon" href="logo.png" type="image/png">
+  <meta property="og:title" content="بازارینو | فروشگاه ایرانی در ایتالیا">
+  <meta property="og:description" content="سفارش آنلاین محصولات اصیل ایرانی در ایتالیا با بازارینو">
+  <meta property="og:image" content="/logo.png">
+  <meta property="og:image:alt" content="لوگوی بازارینو، فروشگاه ایرانی در ایتالیا">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #228B22;
+      --accent-color: #d2691e;
+      --background: #fefcf9;
+      --text-color: #333;
+      --shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    [data-theme="dark"] {
+      --background: #1a1a1a;
+      --text-color: #fff;
+      --shadow: 0 6px 20px rgba(255,255,255,0.1);
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       padding: 0;
       font-family: 'Vazirmatn', sans-serif;
-      background-image: url('background_pattern.png');
+      background-image: url('/background_pattern.png');
       background-repeat: repeat;
-      background-color: #fefcf9;
-      color: #333;
+      background-color: var(--background);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
     }
     header {
-      background-color: #228B22;
+      background-color: var(--primary-color);
       padding: 2rem 1rem;
       text-align: center;
       color: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: var(--shadow);
     }
     header img {
       height: 80px;
@@ -38,22 +60,23 @@
       padding: 1rem 2rem;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow);
       line-height: 2;
     }
     .cta-button {
       display: inline-block;
-      background: #d2691e;
+      background: var(--accent-color);
       color: white;
       padding: 0.8rem 2rem;
       border-radius: 8px;
       text-decoration: none;
       margin-top: 1.5rem;
       font-size: 1.1rem;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
     .cta-button:hover {
       background: #a0522d;
+      transform: scale(1.05);
     }
     .poem-box {
       background: #fff7e6;
@@ -80,7 +103,7 @@
       margin-right: 1rem;
     }
     .footer {
-      background-color: #228B22;
+      background-color: var(--primary-color);
       color: white;
       padding: 1rem;
       text-align: center;
@@ -89,22 +112,83 @@
     .footer small {
       font-size: 0.9rem;
     }
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+    .theme-toggle:hover {
+      background: #a0522d;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+    .back-to-top.show {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      header img {
+        height: 60px;
+      }
+      .content {
+        padding: 1rem;
+        margin: 1rem;
+      }
+      .signature img {
+        height: 70px;
+      }
+    }
+    @media (max-width: 400px) {
+      .cta-button {
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
+      }
+      .theme-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Bazarino Logo">
+  <header data-aos="fade-down">
+    <picture>
+      <source srcset="/logo.webp" type="image/webp">
+      <img src="/logo.png" alt="لوگوی بازارینو" loading="lazy">
+    </picture>
     <h1>بازارینو | فروشگاه ایرانی در ایتالیا</h1>
   </header>
 
-  <div class="content">
+  <div class="content" data-aos="fade-up">
     <p>
       بازارینو ربات تلگرامی هوشمندی‌ست که برای ایرانیان ساکن ایتالیا ساخته شده تا بتوانند محصولات اصیل ایرانی از جمله برنج، خشکبار، ادویه، نوشیدنی و کنسرو را به سادگی از طریق تلگرام سفارش دهند و در شهر پروجا یا سراسر ایتالیا تحویل بگیرند.
     </p>
     <p><strong>شعار ما:</strong> اصالت ایرانی، راحتی ایتالیایی <strong>IRIT</strong></p>
-    <a href="https://t.me/Bazarino_perugia_bot" class="cta-button">ورود به ربات تلگرامی</a>
+    <a href="https://t.me/Bazarino_perugia_bot" class="cta-button" aria-label="ورود به ربات تلگرامی بازارینو">ورود به ربات تلگرامی</a>
 
-    <div class="poem-box">
+    <div class="poem-box" data-aos="fade-up" data-aos-delay="100">
       آب حیات نامده‌ای زان لب شیرین هنوز<br>
       در دل من مانده از آن لعل شکرخا خاطری
       <div class="translation">
@@ -114,12 +198,48 @@
     </div>
 
     <div class="signature">
-      <img src="signature_bazarino.png" alt="Bazarino Signature">
+      <img src="/signature_bazarino.png" alt="امضای بازارینو" loading="lazy">
     </div>
   </div>
 
-  <footer class="footer">
+  <button class="theme-toggle" aria-label="تغییر تم صفحه">تغییر تم</button>
+  <button class="back-to-top" aria-label="بازگشت به بالای صفحه">↑</button>
+
+  <footer class="footer" data-aos="fade-up" data-aos-delay="200">
     <small>طراحی شده با ❤️ توسط تیم بازارینو | میزبانی رایگان GitHub Pages</small>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({ duration: 800, once: true });
+
+    // Theme Toggle
+    document.querySelector('.theme-toggle').addEventListener('click', () => {
+      document.body.dataset.theme = document.body.dataset.theme === 'dark' ? '' : 'dark';
+    });
+
+    // Back to Top Button
+    window.addEventListener('scroll', () => {
+      document.querySelector('.back-to-top').classList.toggle('show', window.scrollY > 300);
+    });
+    document.querySelector('.back-to-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "بازارینو",
+    "description": "فروشگاه محصولات ایرانی در ایتالیا",
+    "url": "https://yourdomain.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "پروجا",
+      "addressCountry": "ایتالیا"
+    }
+  }
+  </script>
 </body>
 </html>
