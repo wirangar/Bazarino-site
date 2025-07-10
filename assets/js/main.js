@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
       notification.classList.remove('show');
-      setTimeout notification.remove();
+      setTimeout(() => notification.remove(), 300);
     }, 3000);
   };
 
