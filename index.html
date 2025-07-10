@@ -10,19 +10,31 @@
   <meta property="og:description" content="سفارش آنلاین محصولات اصیل ایرانی در ایتالیا">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yourwebsite.com">
+  <meta property="og:image" content="https://yourwebsite.com/assets/img/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/img/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "OnlineStore",
+      "name": "بازارینو",
+      "url": "https://yourwebsite.com",
+      "description": "فروشگاه آنلاین محصولات ایرانی در ایتالیا"
+    }
+  </script>
 </head>
 <body>
-  <!-- بخش 1: هدر -->
-  <header class="main-header">
+  <!-- هدر -->
+  <header class="main-header" role="banner">
     <div class="container">
       <div class="logo-container">
         <picture>
           <source srcset="assets/img/logo.webp" type="image/webp">
-          <img src="assets/img/logo.png" alt="لوگوی بازارینو" class="logo" loading="lazy" width="100" height="100">
+          <img src="assets/img/logo.png" alt="لوگوی بازارینو، فروشگاه ایرانی در ایتالیا" class="logo" loading="lazy" width="100" height="100">
         </picture>
       </div>
       <h1>بازارینو | فروشگاه ایرانی در ایتالیا</h1>
@@ -31,7 +43,15 @@
   </header>
 
   <main class="main-content">
-    <!-- بخش 2: معرفی و ویژگی‌ها -->
+    <!-- فرم جستجو -->
+    <section class="search-section container">
+      <form class="search-form">
+        <input type="text" id="search-input" placeholder="جستجوی محصولات..." aria-label="جستجوی محصولات">
+        <button type="submit" aria-label="جستجو"><i class="fas fa-search"></i></button>
+      </form>
+    </section>
+
+    <!-- معرفی و ویژگی‌ها -->
     <section class="intro-section container">
       <div class="intro-text">
         <p>سلام به <span class="highlight">بازارینو</span> خوش آمدید! ✋</p>
@@ -69,68 +89,68 @@
       </div>
     </section>
 
-    <!-- بخش 3: محصولات پرطرفدار -->
+    <!-- محصولات پرطرفدار -->
     <section class="products-section container">
       <h2 class="section-title">محصولات پرطرفدار</h2>
-      <div class="swiper-container products-slider">
+      <div class="swiper products-slider">
         <div class="swiper-wrapper">
           <div class="swiper-slide product-card">
             <picture>
               <source srcset="assets/img/products/rice.webp" type="image/webp">
-              <img src="assets/img/products/rice.jpg" alt="برنج طارم ممتاز" loading="lazy" width="300" height="200">
+              <img src="assets/img/products/rice.jpg" alt="برنج طارم ممتاز، 1 کیلوگرم" loading="lazy" width="300" height="200">
             </picture>
             <div class="product-info">
               <h3>برنج طارم ممتاز</h3>
               <p class="product-price">1kg - €5.99</p>
-              <button class="add-to-cart">افزودن به سبد</button>
+              <button class="add-to-cart" aria-label="افزودن برنج طارم ممتاز به سبد خرید">افزودن به سبد</button>
             </div>
           </div>
           
           <div class="swiper-slide product-card">
             <picture>
               <source srcset="assets/img/products/tomato-paste.webp" type="image/webp">
-              <img src="assets/img/products/tomato-paste.jpg" alt="رب گوجه فرنگی ممتاز" loading="lazy" width="300" height="200">
+              <img src="assets/img/products/tomato-paste.jpg" alt="رب گوجه فرنگی ممتاز، 800 گرم" loading="lazy" width="300" height="200">
             </picture>
             <div class="product-info">
               <h3>رب گوجه فرنگی ممتاز</h3>
               <p class="product-price">800g - €3.75</p>
-              <button class="add-to-cart">افزودن به سبد</button>
+              <button class="add-to-cart" aria-label="افزودن رب گوجه فرنگی ممتاز به سبد خرید">افزودن به سبد</button>
             </div>
           </div>
           
           <div class="swiper-slide product-card">
             <picture>
               <source srcset="assets/img/products/nuts.webp" type="image/webp">
-              <img src="assets/img/products/nuts.jpg" alt="آجیل مخلوط ایرانی" loading="lazy" width="300" height="200">
+              <img src="assets/img/products/nuts.jpg" alt="آجیل مخلوط ایرانی، 500 گرم" loading="lazy" width="300" height="200">
             </picture>
             <div class="product-info">
               <h3>آجیل مخلوط ایرانی</h3>
               <p class="product-price">500g - €8.99</p>
-              <button class="add-to-cart">افزودن به سبد</button>
+              <button class="add-to-cart" aria-label="افزودن آجیل مخلوط ایرانی به سبد خرید">افزودن به سبد</button>
             </div>
           </div>
           
           <div class="swiper-slide product-card">
             <picture>
               <source srcset="assets/img/products/herbal-distillates.webp" type="image/webp">
-              <img src="assets/img/products/herbal-distillates.jpg" alt="عرقیجات گیاهی" loading="lazy" width="300" height="200">
+              <img src="assets/img/products/herbal-distillates.jpg" alt="عرقیجات گیاهی گلاب، 1 لیتر" loading="lazy" width="300" height="200">
             </picture>
             <div class="product-info">
               <h3>عرقیجات گیاهی (گلاب)</h3>
               <p class="product-price">1L - €6.25</p>
-              <button class="add-to-cart">افزودن به سبد</button>
+              <button class="add-to-cart" aria-label="افزودن عرقیجات گیاهی گلاب به سبد خرید">افزودن به سبد</button>
             </div>
           </div>
           
           <div class="swiper-slide product-card">
             <picture>
               <source srcset="assets/img/products/saffron.webp" type="image/webp">
-              <img src="assets/img/products/saffron.jpg" alt="زعفران سرگل" loading="lazy" width="300" height="200">
+              <img src="assets/img/products/saffron.jpg" alt="زعفران سرگل ممتاز، 2 گرم" loading="lazy" width="300" height="200">
             </picture>
             <div class="product-info">
               <h3>زعفران سرگل ممتاز</h3>
               <p class="product-price">2g - €12.90</p>
-              <button class="add-to-cart">افزودن به سبد</button>
+              <button class="add-to-cart" aria-label="افزودن زعفران سرگل ممتاز به سبد خرید">افزودن به سبد</button>
             </div>
           </div>
         </div>
@@ -138,7 +158,16 @@
       </div>
     </section>
 
-    <!-- بخش 4: شعر و امضا -->
+    <!-- خبرنامه -->
+    <section class="newsletter container">
+      <h2 class="section-title">اشتراک در خبرنامه</h2>
+      <form class="newsletter-form">
+        <input type="email" placeholder="ایمیل خود را وارد کنید" required aria-label="ایمیل برای اشتراک در خبرنامه">
+        <button type="submit">اشتراک</button>
+      </form>
+    </section>
+
+    <!-- شعر و امضا -->
     <section class="poem-section container">
       <div class="poem-box">
         <p>
@@ -156,7 +185,7 @@
       <div class="signature">
         <picture>
           <source srcset="assets/img/signature.webp" type="image/webp">
-          <img src="assets/img/signature.png" alt="امضای بازارینو" loading="lazy" width="100" height="50">
+          <img src="assets/img/signature.png" alt="امضای تیم بازارینو" loading="lazy" width="100" height="50">
         </picture>
         <div class="signature-text">
           <h3>با افتخار تقدیم می‌کنیم</h3>
@@ -167,15 +196,15 @@
     </section>
   </main>
 
-  <!-- بخش 5: فوتر -->
+  <!-- فوتر -->
   <footer class="main-footer">
     <div class="container">
       <div class="footer-content">
         <div class="social-links">
-          <a href="https://t.me/Bazarino_perugia_bot" aria-label="تلگرام"><i class="fab fa-telegram"></i></a>
-          <a href="#" aria-label="اینستاگرام"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="واتساپ"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" aria-label="ایمیل"><i class="fas fa-envelope"></i></a>
+          <a href="https://t.me/Bazarino_perugia_bot" aria-label="تلگرام بازارینو"><i class="fab fa-telegram"></i></a>
+          <a href="https://instagram.com/bazarino" aria-label="اینستاگرام بازارینو"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/+393123456789" aria-label="واتساپ بازارینو"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:support@bazarino.com" aria-label="ایمیل بازارینو"><i class="fas fa-envelope"></i></a>
         </div>
         
         <div class="footer-links">
@@ -195,11 +224,17 @@
     </div>
   </footer>
 
-  <!-- دکمه واتساپ ثابت -->
-  <a href="https://wa.me/yournumber" class="whatsapp-float" aria-label="چت در واتساپ">
+  <!-- دکمه واتساپ -->
+  <a href="https://wa.me/+393123456789" class="whatsapp-float" aria-label="چت در واتساپ با بازارینو">
     <i class="fab fa-whatsapp"></i>
   </a>
 
+  <!-- دکمه بازگشت به بالا -->
+  <button class="scroll-to-top" aria-label="بازگشت به بالای صفحه">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
