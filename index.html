@@ -10,9 +10,13 @@
   <meta property="og:description" content="سفارش آنلاین محصولات اصیل ایرانی در ایتالیا">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yourwebsite.com">
-  <link rel="icon" href="logo.png" type="image/png">
+  <meta property="og:image" content="https://yourwebsite.com/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="لوگوی بازارینو، فروشگاه ایرانی در ایتالیا">
+  <link rel="icon" href="/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     :root {
       --primary-color: #228B22;
@@ -23,53 +27,53 @@
       --text-color: #333;
       --light-text: #555;
       --light-bg: #fefcf9;
+      --dark-bg: #1a1a1a;
+      --dark-text: #e0e0e0;
       --box-shadow: 0 6px 20px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
       --border-radius: 12px;
     }
-    
+    [data-theme="dark"] {
+      --light-bg: #1a1a1a;
+      --text-color: #e0e0e0;
+      --light-text: #b0b0b0;
+      --box-shadow: 0 6px 20px rgba(255,255,255,0.1);
+    }
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    
     body {
       font-family: 'Vazirmatn', sans-serif;
       background-color: var(--light-bg);
       color: var(--text-color);
       line-height: 1.8;
       overflow-x: hidden;
+      transition: var(--transition);
     }
-    
-    /* انیمیشن‌ها */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-    
     @keyframes shimmer {
       0% { background-position: 0 0; }
       100% { background-position: 200% 0; }
     }
-    
-    /* هدر */
     header {
       background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       padding: 3rem 1rem 2rem;
       text-align: center;
       color: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: var(--box-shadow);
       position: relative;
       overflow: hidden;
     }
-    
     header::after {
       content: '';
       position: absolute;
@@ -81,12 +85,10 @@
       background-size: 200% auto;
       animation: shimmer 3s linear infinite;
     }
-    
     .logo-container {
       display: inline-block;
       position: relative;
     }
-    
     .logo-container::before {
       content: '';
       position: absolute;
@@ -98,43 +100,33 @@
       border-radius: 50%;
       animation: pulse 3s infinite;
     }
-    
-    header img {
+    header picture img {
       height: 100px;
       margin-bottom: 1rem;
       transition: var(--transition);
-      animation: fadeIn 0.8s ease-out;
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
     }
-    
-    header img:hover {
+    header picture img:hover {
       transform: scale(1.05) rotate(-5deg);
     }
-    
     h1 {
       font-size: 2.5rem;
       margin: 0.5rem 0;
-      animation: fadeIn 1s ease-out;
       text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
-    
     .slogan {
       font-size: 1.2rem;
       margin-top: 0.5rem;
       opacity: 0.9;
     }
-    
     .slogan strong {
       color: #ffd700;
     }
-    
-    /* محتوا */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
-    
     .content {
       margin: 3rem auto;
       padding: 2.5rem;
@@ -142,61 +134,40 @@
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
       line-height: 2;
-      animation: fadeIn 0.8s ease-out;
-      transition: var(--transition);
       position: relative;
       overflow: hidden;
+      transition: var(--transition);
     }
-    
-    .content::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100px;
-      height: 100px;
-      background: url('logo-pattern.png') no-repeat;
-      opacity: 0.03;
-      z-index: 0;
-    }
-    
     .content:hover {
       box-shadow: 0 8px 25px rgba(0,0,0,0.15);
       transform: translateY(-5px);
     }
-    
     .intro-text {
       margin-bottom: 2rem;
       position: relative;
       z-index: 1;
     }
-    
     .highlight {
       background: linear-gradient(90deg, rgba(255,215,0,0.2), rgba(255,215,0,0));
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
     }
-    
-    /* ویژگی‌ها */
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       margin: 3rem 0;
     }
-    
     .feature-card {
       background: white;
       padding: 1.8rem 1.5rem;
       border-radius: var(--border-radius);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: var(--box-shadow);
       text-align: center;
       transition: var(--transition);
       position: relative;
       overflow: hidden;
-      z-index: 1;
     }
-    
     .feature-card::before {
       content: '';
       position: absolute;
@@ -206,40 +177,32 @@
       height: 5px;
       background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
     }
-    
     .feature-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 8px 16px rgba(0,0,0,0.12);
     }
-    
     .feature-card i {
       font-size: 2.5rem;
       color: var(--secondary-color);
       margin-bottom: 1.2rem;
       transition: var(--transition);
     }
-    
     .feature-card:hover i {
       transform: scale(1.1);
       color: var(--accent-color);
     }
-    
     .feature-card h3 {
       margin: 0.8rem 0;
       color: var(--primary-dark);
     }
-    
     .feature-card p {
       color: var(--light-text);
       font-size: 0.95rem;
     }
-    
-    /* دکمه CTA */
     .cta-container {
       text-align: center;
       margin: 2.5rem 0;
     }
-    
     .cta-button {
       display: inline-flex;
       align-items: center;
@@ -258,7 +221,6 @@
       position: relative;
       overflow: hidden;
     }
-    
     .cta-button::before {
       content: '';
       position: absolute;
@@ -270,29 +232,23 @@
       opacity: 0;
       transition: var(--transition);
     }
-    
     .cta-button:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(210, 105, 30, 0.6);
     }
-    
     .cta-button:hover::before {
       opacity: 1;
     }
-    
     .cta-button span {
       position: relative;
       z-index: 1;
     }
-    
     .cta-button i {
       margin-right: 0.7rem;
       font-size: 1.3rem;
       position: relative;
       z-index: 1;
     }
-    
-    /* شعر */
     .poem-box {
       background: #fff7e6;
       border: 2px dashed #d4a017;
@@ -304,7 +260,6 @@
       position: relative;
       overflow: hidden;
     }
-    
     .poem-box::before {
       content: '"';
       position: absolute;
@@ -315,13 +270,11 @@
       line-height: 1;
       font-family: serif;
     }
-    
     .poem-box p {
       margin-bottom: 1rem;
       position: relative;
       z-index: 1;
     }
-    
     .poem-box .translation {
       margin-top: 1.5rem;
       font-style: normal;
@@ -329,11 +282,7 @@
       font-size: 0.95rem;
       padding-top: 1.5rem;
       border-top: 1px dashed rgba(212, 160, 23, 0.5);
-      position: relative;
-      z-index: 1;
     }
-    
-    /* امضا */
     .signature {
       margin-top: 3rem;
       display: flex;
@@ -343,7 +292,6 @@
       border-radius: var(--border-radius);
       border-right: 4px solid var(--secondary-color);
     }
-    
     .signature img {
       height: 100px;
       opacity: 0.9;
@@ -351,23 +299,18 @@
       transition: var(--transition);
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
-    
     .signature img:hover {
       opacity: 1;
       transform: rotate(-5deg) scale(1.05);
     }
-    
     .signature-text h3 {
       color: var(--primary-dark);
       margin-bottom: 0.5rem;
     }
-    
     .signature-text p {
       color: var(--light-text);
       font-size: 0.95rem;
     }
-    
-    /* فوتر */
     .footer {
       background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       color: white;
@@ -376,7 +319,6 @@
       margin-top: 4rem;
       position: relative;
     }
-    
     .footer::before {
       content: '';
       position: absolute;
@@ -386,11 +328,9 @@
       height: 10px;
       background: linear-gradient(90deg, var(--secondary-color), var(--accent-color), var(--secondary-color));
     }
-    
     .social-links {
       margin: 1.5rem 0;
     }
-    
     .social-links a {
       color: white;
       font-size: 1.5rem;
@@ -398,16 +338,13 @@
       transition: var(--transition);
       display: inline-block;
     }
-    
     .social-links a:hover {
       color: #ffd700;
       transform: translateY(-5px) scale(1.1);
     }
-    
     .footer-links {
       margin: 1.5rem 0;
     }
-    
     .footer-links a {
       color: white;
       text-decoration: none;
@@ -415,99 +352,127 @@
       transition: var(--transition);
       font-size: 0.95rem;
     }
-    
     .footer-links a:hover {
       color: #ffd700;
       text-decoration: underline;
     }
-    
     .copyright {
       margin-top: 1.5rem;
       font-size: 0.9rem;
       opacity: 0.8;
     }
-    
     .heart {
       color: #ff6b6b;
       animation: pulse 1.5s infinite;
       display: inline-block;
     }
-    
-    /* رسپانسیو */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+    .theme-toggle:hover {
+      background: var(--secondary-dark);
+      transform: scale(1.05);
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      font-size: 1rem;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+    .back-to-top.show {
+      display: block;
+    }
     @media (max-width: 992px) {
       h1 {
         font-size: 2.2rem;
       }
-      
       .content {
         padding: 2rem;
       }
     }
-    
     @media (max-width: 768px) {
       h1 {
         font-size: 1.8rem;
       }
-      
       .slogan {
         font-size: 1rem;
       }
-      
       .content {
         padding: 1.5rem;
         margin: 2rem auto;
       }
-      
       .features {
         grid-template-columns: 1fr;
       }
-      
       .signature {
         flex-direction: column;
         text-align: center;
       }
-      
       .signature img {
         margin-left: 0;
         margin-bottom: 1.5rem;
       }
-      
       .footer-links {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
       }
-      
       .footer-links a {
         margin: 0.5rem;
       }
     }
-    
     @media (max-width: 480px) {
       header {
         padding: 2rem 1rem;
       }
-      
-      header img {
+      header picture img {
         height: 80px;
       }
-      
       .content {
         padding: 1.2rem;
       }
-      
       .cta-button {
         padding: 0.8rem 1.8rem;
         font-size: 1rem;
+      }
+      .theme-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
-  <header>
+  <button class="theme-toggle" aria-label="تغییر تم صفحه"><i class="fas fa-moon"></i></button>
+  <button class="back-to-top" aria-label="بازگشت به بالای صفحه"><i class="fas fa-arrow-up"></i></button>
+
+  <header data-aos="fade-down">
     <div class="container">
       <div class="logo-container">
-        <img src="logo.png" alt="لوگوی بازارینو" class="logo">
+        <picture>
+          <source srcset="/logo.webp" type="image/webp">
+          <img src="/logo.png" alt="لوگوی بازارینو، فروشگاه ایرانی در ایتالیا" loading="lazy">
+        </picture>
       </div>
       <h1>بازارینو | فروشگاه ایرانی در ایتالیا</h1>
       <p class="slogan">اصالت ایرانی، راحتی ایتالیایی <strong>IRIT</strong></p>
@@ -515,43 +480,41 @@
   </header>
 
   <div class="container">
-    <div class="content">
+    <div class="content" data-aos="fade-up">
       <div class="intro-text">
         <p>سلام به <span class="highlight">بازارینو</span> خوش آمدید! ✋</p>
         <p>
           بازارینو یک ربات تلگرامی هوشمند است که مخصوص ایرانیان مقیم ایتالیا طراحی شده تا بتوانند به سادگی محصولات اصیل ایرانی شامل برنج، خشکبار، ادویه‌جات، نوشیدنی‌ها و کنسروها را سفارش دهند و در <strong>شهر پروجا</strong> یا <strong>سراسر ایتالیا</strong> تحویل بگیرند.
         </p>
       </div>
-      
-      <div class="features">
+
+      <div class="features" data-aos="fade-up" data-aos-delay="100">
         <div class="feature-card">
           <i class="fas fa-shipping-fast"></i>
           <h3>تحویل سریع و مطمئن</h3>
           <p>ارسال به تمام نقاط ایتالیا با بهترین روش‌های حمل و نقل در کمترین زمان ممکن</p>
         </div>
-        
         <div class="feature-card">
           <i class="fas fa-check-double"></i>
           <h3>کیفیت تضمینی</h3>
           <p>محصولات با کیفیت و اصیل ایرانی با گارانتی بازگشت وجه در صورت عدم رضایت</p>
         </div>
-        
         <div class="feature-card">
           <i class="fas fa-headset"></i>
           <h3>پشتیبانی همه‌جانبه</h3>
           <p>پشتیبانی فارسی‌زبان به صورت 24 ساعته و 7 روز هفته برای پاسخگویی به شما</p>
         </div>
       </div>
-      
+
       <div class="cta-container">
-        <a href="https://t.me/Bazarino_perugia_bot" class="cta-button">
+        <a href="https://t.me/Bazarino_perugia_bot" class="cta-button" aria-label="ورود به ربات تلگرامی بازارینو">
           <i class="fab fa-telegram"></i>
           <span>ورود به ربات تلگرامی بازارینو</span>
         </a>
         <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--light-text);">کلیک کنید و مستقیماً به ربات ما در تلگرام متصل شوید</p>
       </div>
 
-      <div class="poem-box">
+      <div class="poem-box" data-aos="fade-up" data-aos-delay="200">
         <p>
           آب حیات نامده‌ای زان لب شیرین هنوز<br>
           در دل من مانده از آن لعل شکرخا خاطری
@@ -562,8 +525,8 @@
         </div>
       </div>
 
-      <div class="signature">
-        <img src="signature_bazarino.png" alt="امضای بازارینو">
+      <div class="signature" data-aos="fade-up" data-aos-delay="300">
+        <img src="/signature_bazarino.png" alt="امضای بازارینو، طراحی شده برای ایرانیان در ایتالیا" loading="lazy">
         <div class="signature-text">
           <h3>با افتخار تقدیم می‌کنیم</h3>
           <p>تیم بازارینو - ایتالیا</p>
@@ -573,24 +536,22 @@
     </div>
   </div>
 
-  <footer class="footer">
+  <footer class="footer" data-aos="fade-up" data-aos-delay="400">
     <div class="container">
       <div class="social-links">
-        <a href="https://t.me/Bazarino_perugia_bot" aria-label="تلگرام"><i class="fab fa-telegram"></i></a>
-        <a href="#" aria-label="اینستاگرام"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="واتساپ"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" aria-label="ایمیل"><i class="fas fa-envelope"></i></a>
+        <a href="https://t.me/Bazarino_perugia_bot" aria-label="تلگرام بازارینو"><i class="fab fa-telegram"></i></a>
+        <a href="#" aria-label="اینستاگرام بازارینو"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="واتساپ بازارینو"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" aria-label="ایمیل پشتیبانی بازارینو"><i class="fas fa-envelope"></i></a>
       </div>
-      
       <div class="footer-links">
-        <a href="#">صفحه اصلی</a>
-        <a href="#">محصولات</a>
-        <a href="#">درباره ما</a>
-        <a href="#">تماس با ما</a>
-        <a href="#">سوالات متداول</a>
-        <a href="#">شرایط و ضوابط</a>
+        <a href="#" aria-label="صفحه اصلی">صفحه اصلی</a>
+        <a href="#" aria-label="محصولات بازارینو">محصولات</a>
+        <a href="#" aria-label="درباره بازارینو">درباره ما</a>
+        <a href="#" aria-label="تماس با بازارینو">تماس با ما</a>
+        <a href="#" aria-label="سوالات متداول">سوالات متداول</a>
+        <a href="#" aria-label="شرایط و ضوابط">شرایط و ضوابط</a>
       </div>
-      
       <div class="copyright">
         <small>© <span id="year">2023</span> بازارینو - تمام حقوق محفوظ است</small><br>
         <small>طراحی شده با <span class="heart">♥</span> توسط تیم بازارینو | میزبانی رایگان GitHub Pages</small>
@@ -598,29 +559,64 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // نمایش سال جاری به صورت خودکار
+    // Initialize AOS
+    AOS.init({ duration: 800, once: true });
+
+    // Update Year
     document.getElementById('year').textContent = new Date().getFullYear();
-    
-    // انیمیشن برای عناصر هنگام اسکرول
-    document.addEventListener('DOMContentLoaded', function() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      const animatedElements = document.querySelectorAll('.content, .feature-card, .poem-box');
-      animatedElements.forEach(el => {
-        el.style.opacity = 0;
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
+
+    // Theme Toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.dataset.theme = document.body.dataset.theme === 'dark' ? '' : 'dark';
+      localStorage.setItem('theme', document.body.dataset.theme);
+      themeToggle.innerHTML = document.body.dataset.theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.dataset.theme = 'dark';
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    // Back to Top
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('show', window.scrollY > 300);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Smooth Scroll for Links
+    document.querySelectorAll('.footer-links a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if (this.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "بازارینو",
+    "description": "فروشگاه محصولات ایرانی در ایتالیا با تحویل در پروجا و سراسر ایتالیا",
+    "url": "https://yourwebsite.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "پروجا",
+      "addressCountry": "ایتالیا"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "url": "https://t.me/Bazarino_perugia_bot"
+    }
+  }
   </script>
 </body>
 </html>
